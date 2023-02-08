@@ -1,0 +1,55 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.regist{
+	width: 550px;
+	padding: 20px;
+	margin: 20px auto;
+	border: 1px solid #e0e0e0;
+}
+.regist div{
+	width: 550px;
+	margin: 10px 0;
+	overflow: hidden;
+}
+.regist div label{
+	width: 200px;
+	height: 20px;
+	line-height: 20px;
+	color: #606060;
+	text-align: right;
+	float: left;
+}
+.regist div input{
+	width: 140px;
+	height:20px;
+	float: left;
+}
+.regist div input[type="radio"],.regist div input[type="checkbox"]{
+	width:40px;
+	height:20px;
+}
+/*.regist div {
+	width:40px;
+	height:20px;
+}*/
+.regist div textarea {
+	height: 60px;
+	width: 200px;
+}
+.special{
+	width: 40px !important;
+}
+
+.regist  input#submit,input#reset,input#cancel {
+	width: 60px;
+	height: 30px;
+	background-color:#758cf4;
+	font-size: 16px;
+	line-height: 30px;
+	text-align: center;
+}
+.regist  input#submit{
+	margin-left:200px;
+}

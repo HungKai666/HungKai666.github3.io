@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="lib/jquery/jquery-3.5.1.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<link href="js/8-navstyle.css" rel="stylesheet">
+
+    <title>商品详情</title>
+</head>
+<script src="js/jquery-3.6.0.js"></script>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+     /* 细节图查看开始 */
+     .box{
+        width: 300px!important;
+        height: 200px;
+        border: 1px solid #ccc;
+        position: relative;
+    }
+    /*用于显示放大图片的div样式*/
+    .big{
+        width: 600px;
+        height: 400px;
+        position: absolute;
+        top: 0;
+        left: 360px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        display: none;
+    }
+    /*遮罩样式*/
+    .mask{
+        width: 150px;
+        height: 100px;
+        background: rgba(255, 255, 0, .4);
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: move;
+        display: none
+        
+    }
+    .small {
+        position: relative
+        }
+    .box img {
+        vertical-align: top
+        }
+    #bigBox img {
+        position: absolute;
+        }
+    .down {
+        padding: 20px;
+        text-align: center;
+        }
+    .down img {
+        width: 60px;
+        height: 40px;
+        border: 3px solid #ccc;
+    }
+	.container{
+		padding-top: 200px;
+	}
+	.hui{
+		height: 20px;
+		width: 70px;
+		background-color: cadetblue;	
+	}
+    /* 细节查看图结束 */
+    .container{
+        padding-top: 50px;
+        display: flex;
+    }
+    .box2{
+        flex:7;
+    }
+    .right{
+        padding-left: 50px;
+    }
+    .right span{
+        line-height: 30px;
+    }
+   
+</style>
+<body>
+    <div class="container">
+        <!-- 细节查看开始 -->
+        <div class="box" id="box">
+            <div id="smallBox" class="small">
+                <img src="./宠物/宠物1.jpg" upimg style="height:200px ;width:300px ;"><!--上方图片-->
+                <div id="mask" class="mask"></div>
+            </div>
+            <div class="down"> <!--底部图片-->
+                <img src="./宠物/宠物1.jpg" rel="./宠物/宠物1.jpg" smallimage>
+            </div>
+            <div id="bigBox" class="big">
+                <img id="bigImg" src="./宠物/宠物1.jpg" style="width: 1200px;height: 800px;"><!--右侧显示的大图-->
+            </div>
+        </div>
+        <!-- 细节查看结束 -->
+        <!-- 商品参数开始 -->
+        <div class="box2">
+            <div class="right">
+                <h3>可爱哆咪新西兰进口品种优良基因</h3>
+                <span>价格</span>&nbsp;<span style="font-size: 20px;color: red;">1999.00</span><br>
+                <span>月销量</span>&nbsp;<span style="font-size: 20px;color: red;">99</span><br>
+                <span>数量&nbsp;</span><input type="number" value="1"><br>
+                <button type="button" class="btn btn-default  ">立即购买</button><button type="button" class="btn btn-default  glyphicon-shopping-cart">加入购物车</button><br>
+                <span>服务承诺&nbsp;正品保证&nbsp;退货运险费&nbsp;七天无理由退换</span>
+            </div>
+        </div>
+        <!-- 商品参数结束 -->
+    </div>
+    <div class="container">
+        <div class="title">
+            <hr/>
+            <h3>哆咪介绍</h3>
+            <p>性格活泼、好动。对自己喜欢的玩具、会一天到晚的把玩。其对外有极强警惕性，能为户主看家护院。其特别是对大型同类，并且不服输。</p>
+        </div>
+        
+    </div>
+    <script>
+        $("[smallimage]").mouseover(function(){
+            var address = $(this).css("border","3px solid red").attr("src");
+            $("[upimg]").attr("src", address);
+            var bigimage = $(this).attr("rel");
+            $("#bigImg").attr("src", bigimage);
+        }).mouseout(function(){
+            $(this).css("border","3px solid #ccc");
+        });
+        //鼠标经过盒子，显示遮罩和大图
+        $('#smallBox').mouseover(function(){
+            $("#mask").css("display", "block");
+            $("#bigBox").css("display", "block");
+        })
+        //鼠标离开盒子，隐藏遮罩和大图
+        $('#smallBox').mouseleave(function(){
+            $("#mask").css("display", "none");
+            $("#bigBox").css("display", "none");
+        })
+        
+        $('#smallBox').mousemove(function (event){
+            var event = event || window.event;
+            //鼠标在页面中的坐标
+            var pageX = event.pageX
+            var pageY = event.pageY
+            //计算鼠标的位置 距 盒子 的距离
+            var boxX = pageX - $('#box').offset().left;
+            var boxY = pageY - $('#box').offset().top;
+            //计算遮罩的位置
+            var maskX = boxX - $('#mask').outerWidth() / 2;
+            var maskY = boxY - $('#mask').outerHeight() / 2;
+            //限定遮罩可移动范围  
+            //当遮罩左边刚好跟小图片左边重叠且鼠标移动到遮罩中心位置左边时，控制遮罩不能再往左移
+            if (maskX < 0) {
+                maskX = 0;
+            }
+            //当遮罩右边刚好跟小图片右边重叠且鼠标移动到遮罩中心位置右边时，控制遮罩不能再往右移
+            if (maskX > $('#smallBox').outerWidth() - $('#mask').outerWidth()){
+                maskX = $('#smallBox').outerWidth() - $('#mask').outerWidth();
+            }
+   
+            //当遮罩顶端刚好跟小图片顶端重叠且鼠标移动到遮罩中心位置上方时，控制遮罩不能再往上移
+            if(maskY < 0){
+                maskY = 0;
+            }
+            //当遮罩顶端刚好跟小图片底端重叠且鼠标移动到遮罩中心位置下方时，控制遮罩不能再往下移
+            if(maskY > $('#smallBox').outerHeight() - $('#mask').outerHeight()){
+               maskY = $('#smallBox').outerHeight() - $('#mask').outerHeight();
+            }
+            //修改遮罩的显示位置
+            $('#mask').css("left",maskX + 'px');
+            $('#mask').css("top",maskY + 'px');
+            //设置图片放大倍数，跟小图和大图比例一致
+            var multiple = 4;
+            //设置大图片当前的位置 = rate * 遮罩当前的位置
+            $('#bigImg').css("left",- multiple * maskX + 'px');
+            $('#bigImg').css("top",- multiple * maskY + 'px');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+body{
+	font-size: 0.875rem;
+	line-height: 1.5rem;
+}
+.navblue{
+	color: #337ab7 !important;
+}
+img{
+	max-width: 100%;
+}
+.section_header{
+	height: 150px;
+    background: url("../images/section-header.png") center center no-repeat;
+}
+.section_header h1{
+	font-size: 1.875rem;
+	font-weight: bold;
+}
+.about p{
+	color: #7f7f7f;
+	font-size: 1rem;
+	line-height: 1.8rem;
+}
+.about h5{
+	font-weight: bold;
+	margin-top: 15px;
+}
+.jing ul{
+	background-color: #DCDCDC;
+	padding: 30px 1rem;
+	color: #666;
+	margin-top: 0;
+	list-style-type: none;
+}
+.jing ul i{
+	color: #0099cc;
+	margin-right: 1rem;
+}
+.footer_ul li{
+	list-style:none; 
+	padding:0 5px;
+}
+.footer_ul a{
+	font-size: 0.75rem;
+}
+.footer_ul{
+	padding-left: 5px;
+}
+@media (min-width: 576px){
+	.jing{
+		width: 400px;
+	}
+}
+@media (min-width: 768px){
+	.center{
+		text-align: center;
+	}
+}
+
+
